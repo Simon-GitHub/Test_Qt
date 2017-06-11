@@ -47,6 +47,13 @@ for /r . %%a in (GeneratedFiles) do (
 	)
 )
 
+for /r . %%a in (Win32) do (  
+	if exist %%a (
+		echo "delete" %%a
+		rd /s /q "%%a" 
+	)
+)
+
 REM 下面的for循环删除不了隐藏文件，因此隐藏的*.suo文件删除不了
 for /r . %%a in (*.sln) do (  
 	if exist %%a (
@@ -97,5 +104,11 @@ for /r . %%a in (*.stash) do (
 	)
 )
 
+for /r . %%a in (Makefile) do (  
+	if exist %%a (
+		echo "delete" %%a
+		del "%%a" 
+	)
+)
 
 pause
