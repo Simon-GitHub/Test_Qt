@@ -5,6 +5,7 @@ TEMPLATE = subdirs
 #	FileTransfer
 
 SUBDIRS += 	$$PWD/PainterRotate/PainterRotate.pro \
-			$$PWD/FileTransfer/FileTransfer.pro
+			$$PWD/FileTransfer/FileTransfer.pro \
+			$$PWD/testDock/testDock.pro
 
 CONFIG += ordered
