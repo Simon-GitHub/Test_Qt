@@ -8,10 +8,12 @@ QMainWindow(parent),
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
+#if 0
 	//删除中央窗体
 	QWidget* p = takeCentralWidget();
 	if(p)
 		delete p;
+#endif
 	//允许嵌套dock
 	setDockNestingEnabled(true);
 	//记录所有的dock指针
@@ -79,6 +81,7 @@ void MainWindow::on_action_splitDockFun_triggered()
 }
 void MainWindow::on_action_tabifyDockWidget_triggered()
 {
+#if 0
 	removeAllDock();
 	//原则，先左右，再上下
 	addDockWidget(Qt::LeftDockWidgetArea,ui->dockWidget_1);
@@ -91,6 +94,20 @@ void MainWindow::on_action_tabifyDockWidget_triggered()
 	tabifyDockWidget(ui->dockWidget_5,ui->dockWidget_8);
 	tabifyDockWidget(ui->dockWidget_3,ui->dockWidget_9);
 	showDock();
+#else
+	removeAllDock();
+	//原则，先左右，再上下
+	addDockWidget(Qt::LeftDockWidgetArea,ui->dockWidget_1);
+	splitDockWidget(ui->dockWidget_1,ui->dockWidget_2,Qt::Horizontal);
+	splitDockWidget(ui->dockWidget_2,ui->dockWidget_3,Qt::Horizontal);
+	splitDockWidget(ui->dockWidget_1,ui->dockWidget_4,Qt::Vertical);
+	splitDockWidget(ui->dockWidget_2,ui->dockWidget_5,Qt::Vertical);
+	splitDockWidget(ui->dockWidget_3,ui->dockWidget_6,Qt::Vertical);
+	tabifyDockWidget(ui->dockWidget_1,ui->dockWidget_7);
+	tabifyDockWidget(ui->dockWidget_1,ui->dockWidget_8);
+	tabifyDockWidget(ui->dockWidget_3,ui->dockWidget_9);
+	showDock();
+#endif
 }
 void MainWindow::on_action_addDockWidget_triggered()
 {
