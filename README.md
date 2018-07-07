@@ -9,3 +9,4 @@ testDock - Qt中 QDockWidget的自定义标题栏 以及 tab页的位置 https:/
 DockExample - QDockWidget嵌套布局详解-实现Visual Studio布局 https://blog.csdn.net/czyt1988/article/details/51209619
 legendmarkers - [QtCharts]添加数据对比曲线图，更具同名例子修改而来
 zhexiantu - 折线图绘制
+CusButtonGroup - Qt自定义Button组控件https://blog.csdn.net/ly305750665/article/details/80736504 http://www.qtcn.org/bbs/read-htm-tid-67952.html

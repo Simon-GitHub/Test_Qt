@@ -50,17 +50,23 @@ MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent)
 		, m_num(0)
 {
+	//setStyleSheet("QWidget{border: 2px solid red;}");
     // Create chart view with the chart
     m_chart = new QChart();
+	// È¥³ý±ß¿ò
+	m_chart->layout()->setContentsMargins(0,0,0,0);
+	m_chart->setBackgroundBrush(QColor(0, 0, 0, 255));
     m_chartView = new QChartView(m_chart, this);
 
     // Create layout for grid and detached legend
     m_mainLayout = new QGridLayout();
+	m_mainLayout->setContentsMargins(0,0,0,0);
+	m_mainLayout->setSpacing(0);
 	m_startPushButton = new QPushButton(QString::fromLocal8Bit("¿ªÊ¼"));
 	m_startPushButton->setCheckable(true);
 	connect(m_startPushButton, SIGNAL(clicked(bool)), this, SLOT(pushButtonSlot(bool)));
-	m_mainLayout->addWidget(m_chartView, 0, 0, 1, 5);
-	m_mainLayout->addWidget(m_startPushButton, 1, 2, 1, 1);
+	m_mainLayout->addWidget(m_chartView, 0, 0, 1, 1);
+	m_mainLayout->addWidget(m_startPushButton, 1, 0, 1, 1);
     setLayout(m_mainLayout);
 
     // Add few series
