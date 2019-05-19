@@ -13,8 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp\
+		DataSend2Widget.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h\
+		DataSend2Widget.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui\
+		DataSend2Widget.ui

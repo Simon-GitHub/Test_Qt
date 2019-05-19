@@ -38,12 +38,13 @@ private slots:
 	void dirToolButtonClicked(bool);
 	void addHeaderPushButtonClicked(bool);
 	void subHeaderPushButtonClicked(bool);
+	void modifyNamePushButtonClicked(bool);
 	void beginPushButtonClicked(bool);
+	void pausePushButtonClicked(bool);
+	void stopPushButtonClicked(bool);
 	void normalPushButtonClicked(bool);
 	void acceleratePushButtonClicked(bool);
 	void deceleratePushButtonClicked(bool);
-	void pausePushButtonClicked(bool);
-	void stopPushButtonClicked(bool);
 	void timerTimeout();
 	// 
 	void processPendingDatagrams();

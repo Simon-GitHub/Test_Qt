@@ -37,12 +37,13 @@ QMainWindow(parent),
 	connect(m_ui->dirToolButton, SIGNAL(clicked(bool)), SLOT(dirToolButtonClicked(bool)));
 	connect(m_ui->addHeaderPushButton, SIGNAL(clicked(bool)), SLOT(addHeaderPushButtonClicked(bool)));
 	connect(m_ui->subHeaderPushButton, SIGNAL(clicked(bool)), SLOT(subHeaderPushButtonClicked(bool)));
+	connect(m_ui->modifyNamePushButton, SIGNAL(clicked(bool)), SLOT(modifyNamePushButtonClicked(bool)));
 	connect(m_ui->beginPushButton, SIGNAL(clicked(bool)), SLOT(beginPushButtonClicked(bool)));
+	connect(m_ui->pausePushButton, SIGNAL(clicked(bool)), SLOT(pausePushButtonClicked(bool)));
+	connect(m_ui->stopPushButton, SIGNAL(clicked(bool)), SLOT(stopPushButtonClicked(bool)));
 	connect(m_ui->normalPushButton, SIGNAL(clicked(bool)), SLOT(normalPushButtonClicked(bool)));
 	connect(m_ui->acceleratePushButton, SIGNAL(clicked(bool)), SLOT(acceleratePushButtonClicked(bool)));
 	connect(m_ui->deceleratePushButton, SIGNAL(clicked(bool)), SLOT(deceleratePushButtonClicked(bool)));
-	connect(m_ui->pausePushButton, SIGNAL(clicked(bool)), SLOT(pausePushButtonClicked(bool)));
-	connect(m_ui->stopPushButton, SIGNAL(clicked(bool)), SLOT(stopPushButtonClicked(bool)));
 	connect(m_timer, SIGNAL(timeout()), SLOT(timerTimeout()));
 
 	initTargetVisible(); 
@@ -207,6 +208,33 @@ void MainWindow::subHeaderPushButtonClicked(bool)
 	}
 }
 
+void MainWindow::modifyNamePushButtonClicked(bool)
+{
+	QString dirStr = m_ui->dirLineEdit->text();
+	if(dirStr.isEmpty()) return;
+	QDir dir(dirStr);
+	QFileInfoList fileInfoList = dir.entryInfoList(QDir::Files, QDir::Time);
+	for (int i = 0; i < fileInfoList.size(); ++i)
+	{
+		QString baseName = fileInfoList[i].completeBaseName();
+		QStringList strList = baseName.split("_");
+		if(strList.size() != 2) continue;
+		QString newBaseName = strList[1];
+		QString absoluteFilePath = fileInfoList[i].absoluteFilePath();
+		QString suffix = fileInfoList[i].suffix();
+		QString absolutePath = fileInfoList[i].absolutePath();
+		QFile file(absoluteFilePath);
+		bool renameFlag = file.rename(absolutePath + QDir::separator() + newBaseName + "." + suffix);
+		while (!renameFlag)
+		{
+			int num = newBaseName.right(3).toInt();
+			++num;
+			newBaseName = newBaseName.left(14) + QString::number(num);
+			renameFlag = file.rename(absolutePath + QDir::separator() + newBaseName + "." + suffix);
+		}
+	}
+}
+
 void MainWindow::beginPushButtonClicked(bool)
 {
 	if(m_workState != Pause)
@@ -229,6 +257,20 @@ void MainWindow::beginPushButtonClicked(bool)
 	{
 	}
 	timerTimeout();
+}
+
+void MainWindow::pausePushButtonClicked(bool)
+{
+	m_workState = Pause;
+	m_timer->stop();
+}
+
+void MainWindow::stopPushButtonClicked(bool)
+{
+	m_workState = Stop;
+	m_timer->stop();
+	m_sendNum = 0;
+	m_ui->frameSpinBox->setValue(m_sendNum);
 }
 
 void MainWindow::normalPushButtonClicked(bool)
@@ -276,20 +318,6 @@ void MainWindow::deceleratePushButtonClicked(bool)
 	else 
 	{
 	}
-}
-
-void MainWindow::pausePushButtonClicked(bool)
-{
-	m_workState = Pause;
-	m_timer->stop();
-}
-
-void MainWindow::stopPushButtonClicked(bool)
-{
-	m_workState = Stop;
-	m_timer->stop();
-	m_sendNum = 0;
-	m_ui->frameSpinBox->setValue(m_sendNum);
 }
 
 void MainWindow::timerTimeout()

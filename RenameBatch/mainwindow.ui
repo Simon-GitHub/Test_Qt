@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>764</width>
+    <width>747</width>
     <height>306</height>
    </rect>
   </property>
@@ -228,6 +228,12 @@
         </item>
         <item row="0" column="0" colspan="3">
          <widget class="QWidget" name="ww" native="true">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
             <widget class="QLabel" name="dirLabel">
@@ -284,6 +290,25 @@
             <widget class="QPushButton" name="subHeaderPushButton">
              <property name="text">
               <string>去除包头</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="autoRepeat">
+              <bool>false</bool>
+             </property>
+             <property name="autoRepeatDelay">
+              <number>3</number>
+             </property>
+             <property name="autoRepeatInterval">
+              <number>1</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="modifyNamePushButton">
+             <property name="text">
+              <string>修改名字</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -480,6 +505,31 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>特殊发送</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_14">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="1" column="0">
+         <widget class="DataSend2Widget" name="dataSend2Widget" native="true"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -489,7 +539,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>764</width>
+     <width>747</width>
      <height>23</height>
     </rect>
    </property>
@@ -505,6 +555,14 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>DataSend2Widget</class>
+   <extends>QWidget</extends>
+   <header>datasend2widget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -18,3 +18,5 @@ legendmarkers - [QtCharts]添加数据对比曲线图，更具同名例子修改
 zhexiantu - 折线图绘制
 
 CusButtonGroup - Qt自定义Button组控件https://blog.csdn.net/ly305750665/article/details/80736504 http://www.qtcn.org/bbs/read-htm-tid-67952.html
+
+GraphicsViewTest - 绘制流动的线、矩形和窗口

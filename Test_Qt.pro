@@ -10,6 +10,7 @@ SUBDIRS += 	$$PWD/PainterRotate/PainterRotate.pro \
 			$$PWD/DockExample/DockExample.pro \
 			$$PWD/legendmarkers/legendmarkers.pro \
 			$$PWD/zhexiantu/zhexiantu.pro \
-			$$PWD/CusButtonGroup/CusButtonGroup.pro
+			$$PWD/CusButtonGroup/CusButtonGroup.pro \
+			$$PWD/RenameBatch/RenameBatch.pro
 
 CONFIG += ordered
